@@ -26,7 +26,14 @@ const Edit = () => {
 
   // if route has id, open editor for that id; allow 'new' even when words array is empty
   useEffect(() => {
-    if (!params.id) return;
+    if (!params.id) {
+      // reset editing when navigating back to /edit without id
+      setEditing(null);
+      setIsCreating(false);
+      setDirty(false);
+      setSaved(false);
+      return;
+    }
 
     if (params.id === 'new') {
       setEditing({ ...emptyWord(), examples: [{ text: '', isNew: true, isEditing: true }] });
