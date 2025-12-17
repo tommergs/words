@@ -582,5 +582,18 @@
     "title": "Garlic",
     "transcription": "[ˈgɑːlɪk]",
     "translate": "чеснок, чесночный"
+  },
+  {
+    "id": 76,
+    "learned": false,
+    "examples": [
+      {
+        "en": "123123123",
+        "ru": "123123123232342345235234"
+      }
+    ],
+    "title": "123",
+    "transcription": "123",
+    "translate": "123"
   }
 ]
