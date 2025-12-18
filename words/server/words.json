@@ -28,7 +28,7 @@
     "title": "Trunk",
     "transcription": "[trʌŋk]",
     "translate": "багажник, ствол, хобот, сундук",
-    "learned": false,
+    "learned": true,
     "examples": []
   },
   {
@@ -575,7 +575,7 @@
   },
   {
     "id": 75,
-    "learned": false,
+    "learned": true,
     "examples": [
       ""
     ],

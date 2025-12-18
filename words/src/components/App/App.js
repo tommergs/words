@@ -27,6 +27,12 @@ function App() {
   };
 
   useEffect(() => {
+    if (selectedWords.length < 10) {
+      setSampleSize(selectedWords.length);
+    }
+  }, [selectedWords]);
+
+  useEffect(() => {
     // try loading from backend; fall back to local data
     fetch(`${API_BASE}/api/words`)
       .then(r => r.json())
