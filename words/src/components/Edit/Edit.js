@@ -154,7 +154,7 @@ const Edit = () => {
           <div className='word-list'>
             {words.map(w => (
               <div key={w.id} className='word-row'>
-                <div>{w.title} — {w.translate}</div>
+                <div className='word-row-edit-content'>{w.title} — {w.translate}</div>
                 <div className='word-row-edit-buttons'>
                   <button className='small-btn' onClick={() => navigate(`/edit/${w.id}`)}>Edit</button>
                   <button className='small-btn' onClick={() => remove(w.id)}>Delete</button>
