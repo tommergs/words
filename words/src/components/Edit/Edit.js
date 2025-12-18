@@ -177,7 +177,7 @@ const Edit = () => {
           </div>
           <div>
             <label>Translate</label>
-            <input style={{width: '400px'}} value={editing.translate} onChange={e => { setEditing(prev => ({ ...prev, translate: e.target.value })); setDirty(true); setSaved(false); }} />
+            <input className='edit-translate-input' value={editing.translate} onChange={e => { setEditing(prev => ({ ...prev, translate: e.target.value })); setDirty(true); setSaved(false); }} />
           </div>
 
           <div className='examples-list'>
