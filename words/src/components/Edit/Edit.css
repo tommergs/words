@@ -54,6 +54,7 @@
 @media (max-width: 610px) {
   .word-row-edit-content {
     display: flex;
+    width: 100%;
   }
   .word-row {
     flex-direction: column;
