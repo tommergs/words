@@ -52,6 +52,16 @@ function App() {
     setSessionWords(prev => prev.map(w => w.id === updated.id ? updated : w));
   }
 
+  const handleExport = () => {
+    const dataStr = JSON.stringify(words, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const exportFileDefaultName = 'words.json';
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+  };
+
   const shuffle = (array) => {
     const a = [...array];
     for (let i = a.length - 1; i > 0; i--) {
@@ -132,6 +142,12 @@ function App() {
           >
             Remove all words
           </btn>
+          <button
+            className='small-btn'
+            onClick={handleExport}
+          >
+            Export Data
+          </button>
         </div>
       </header>
       {
