@@ -33,12 +33,31 @@ function App() {
   }, [selectedWords]);
 
   useEffect(() => {
-    // try loading from backend; fall back to local data
+    // try loading from backend; fall back to local data if response is invalid/empty
     fetch(`${API_BASE}/api/words`)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('Network response not ok');
+        return r.json();
+      })
       .then(d => {
-        setWords(d);
-        setSelectedWords(d);
+        // handle several possible shapes:
+        //  - array ([]) or non-empty array
+        //  - { data: [...] }
+        // if server returns an empty array, fall back to localData
+        let payload = [];
+        if (Array.isArray(d) && d.length > 0) {
+          payload = d;
+        } else if (d && Array.isArray(d.data) && d.data.length > 0) {
+          payload = d.data;
+        }
+
+        if (payload.length > 0) {
+          setWords(payload);
+          setSelectedWords(payload);
+        } else {
+          setWords(localData);
+          setSelectedWords(localData);
+        }
       })
       .catch(() => {
         setWords(localData);
@@ -106,6 +125,13 @@ function App() {
           GAME {gameMode ? "OFF" : "ON"}
         </a>
         <Link to="/edit" style={{position:'absolute', right:16, top:16}} className='small-btn'>Edit</Link>
+        <button
+          className='small-btn'
+          onClick={handleExport}
+          style={{position:'absolute', left:16, top:16, width: '65px'}}
+        >
+          Export Data
+        </button>
         <input
           type='number'
           min={1}
@@ -142,12 +168,6 @@ function App() {
           >
             Remove all words
           </btn>
-          <button
-            className='small-btn'
-            onClick={handleExport}
-          >
-            Export Data
-          </button>
         </div>
       </header>
       {
